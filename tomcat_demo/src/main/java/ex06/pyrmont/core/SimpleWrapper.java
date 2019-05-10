@@ -339,7 +339,6 @@ public class SimpleWrapper implements Wrapper, Pipeline, Lifecycle {
 
   // implementation of the Lifecycle interface's methods
   public void addLifecycleListener(LifecycleListener listener) {
-	  lifecycle.addLifecycleListener(listener);
   }
 
   public LifecycleListener[] findLifecycleListeners() {

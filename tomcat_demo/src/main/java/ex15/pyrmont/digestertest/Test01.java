@@ -12,7 +12,7 @@ public class Test01 {
     // add rules
     digester.addObjectCreate("employee", "ex15.pyrmont.digestertest.Employee");
     digester.addSetProperties("employee");    
- //   digester.addCallMethod("employee", "printName");
+    digester.addCallMethod("employee", "printName");
 
     try {
       Employee employee = (Employee) digester.parse(file);

@@ -123,13 +123,13 @@ public final class HttpConnector
     /**
      * The minimum number of processors to start at initialization time.
      */
-    protected int minProcessors = 1;
+    protected int minProcessors = 5;
 
 
     /**
      * The maximum number of processors allowed, or <0 for unlimited.
      */
-    private int maxProcessors = 1;
+    private int maxProcessors = 20;
 
 
     /**

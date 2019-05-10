@@ -23,7 +23,7 @@ public final class Bootstrap {
     Wrapper wrapper2 = new SimpleWrapper();
     wrapper2.setName("Modern");
     wrapper2.setServletClass("ModernServlet");
-    
+
     Context context = new SimpleContext();
     context.addChild(wrapper1);
     context.addChild(wrapper2);
@@ -32,7 +32,6 @@ public final class Bootstrap {
     mapper.setProtocol("http");
     LifecycleListener listener = new SimpleContextLifecycleListener();
     ((Lifecycle) context).addLifecycleListener(listener);
-
     context.addMapper(mapper);
     Loader loader = new SimpleLoader();
     context.setLoader(loader);

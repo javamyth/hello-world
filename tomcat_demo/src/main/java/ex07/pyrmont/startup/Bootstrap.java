@@ -5,14 +5,12 @@ import ex07.pyrmont.core.SimpleContextLifecycleListener;
 import ex07.pyrmont.core.SimpleContextMapper;
 import ex07.pyrmont.core.SimpleLoader;
 import ex07.pyrmont.core.SimpleWrapper;
-
 import org.apache.catalina.Connector;
 import org.apache.catalina.Context;
 import org.apache.catalina.Lifecycle;
 import org.apache.catalina.LifecycleListener;
 import org.apache.catalina.Loader;
 import org.apache.catalina.logger.FileLogger;
-import org.apache.catalina.logger.SystemOutLogger;
 import org.apache.catalina.Mapper;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.connector.http.HttpConnector;
@@ -49,7 +47,6 @@ public final class Bootstrap {
     logger.setSuffix(".txt");
     logger.setTimestamp(true);
     logger.setDirectory("webroot");
-//    SystemOutLogger logger=new SystemOutLogger();
     context.setLogger(logger);
 
     //---------------------------

@@ -101,7 +101,7 @@ public class SystemOutLogger
      */
     public void log(String msg) {
 
-        System.out.println("log:"+msg);
+        System.out.println(msg);
 
     }
 

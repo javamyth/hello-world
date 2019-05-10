@@ -350,8 +350,8 @@ public class FileDirContext extends BaseDirContext {
 
         Vector entries = list(file);
 
-      //  return new NamingContextEnumeration(entries);
-       return null;
+        return new NamingContextEnumeration(entries);
+
     }
 
 
@@ -379,8 +379,8 @@ public class FileDirContext extends BaseDirContext {
 
         Vector entries = list(file);
 
-      //  return new NamingContextBindingsEnumeration(entries);
-      return null;
+        return new NamingContextBindingsEnumeration(entries);
+
     }
 
 

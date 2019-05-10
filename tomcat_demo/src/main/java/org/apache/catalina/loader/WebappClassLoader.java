@@ -814,49 +814,49 @@ public class WebappClassLoader
         // Check if JARs have been added or removed
         if (getJarPath() != null) {
 
-//            try {
-//                NamingEnumeration enum = resources.listBindings(getJarPath());
-//                int i = 0;
-//                while (enum.hasMoreElements() && (i < length)) {
-//                    NameClassPair ncPair = (NameClassPair) enum.nextElement();
-//                    String name = ncPair.getName();
-//                    // Ignore non JARs present in the lib folder
-//                    if (!name.endsWith(".jar"))
-//                        continue;
-//                    if (!name.equals(jarNames[i])) {
-//                        // Missing JAR
-//                        log("    Additional JARs have been added : '"
-//                            + name + "'");
-//                        return (true);
-//                    }
-//                    i++;
-//                }
-//                if (enum.hasMoreElements()) {
-//                    while (enum.hasMoreElements()) {
-//                        NameClassPair ncPair =
-//                            (NameClassPair) enum.nextElement();
-//                        String name = ncPair.getName();
-//                        // Additional non-JAR files are allowed
-//                        if (name.endsWith(".jar")) {
-//                            // There was more JARs
-//                            log("    Additional JARs have been added");
-//                            return (true);
-//                        }
-//                    }
-//                } else if (i < jarNames.length) {
-//                    // There was less JARs
-//                    log("    Additional JARs have been added");
-//                    return (true);
-//                }
-//            } catch (NamingException e) {
-//                if (debug > 2)
-//                    log("    Failed tracking modifications of '"
-//                        + getJarPath() + "'");
-//            } catch (ClassCastException e) {
-//                log("    Failed tracking modifications of '"
-//                    + getJarPath() + "' : " + e.getMessage());
-//            }
-//
+            try {
+                NamingEnumeration enum = resources.listBindings(getJarPath());
+                int i = 0;
+                while (enum.hasMoreElements() && (i < length)) {
+                    NameClassPair ncPair = (NameClassPair) enum.nextElement();
+                    String name = ncPair.getName();
+                    // Ignore non JARs present in the lib folder
+                    if (!name.endsWith(".jar"))
+                        continue;
+                    if (!name.equals(jarNames[i])) {
+                        // Missing JAR
+                        log("    Additional JARs have been added : '"
+                            + name + "'");
+                        return (true);
+                    }
+                    i++;
+                }
+                if (enum.hasMoreElements()) {
+                    while (enum.hasMoreElements()) {
+                        NameClassPair ncPair =
+                            (NameClassPair) enum.nextElement();
+                        String name = ncPair.getName();
+                        // Additional non-JAR files are allowed
+                        if (name.endsWith(".jar")) {
+                            // There was more JARs
+                            log("    Additional JARs have been added");
+                            return (true);
+                        }
+                    }
+                } else if (i < jarNames.length) {
+                    // There was less JARs
+                    log("    Additional JARs have been added");
+                    return (true);
+                }
+            } catch (NamingException e) {
+                if (debug > 2)
+                    log("    Failed tracking modifications of '"
+                        + getJarPath() + "'");
+            } catch (ClassCastException e) {
+                log("    Failed tracking modifications of '"
+                    + getJarPath() + "' : " + e.getMessage());
+            }
+
         }
 
         // No classes have been modified
@@ -868,40 +868,40 @@ public class WebappClassLoader
     /**
      * Render a String representation of this object.
      */
-//    public String toString() {
-//
-//        StringBuffer sb = new StringBuffer("WebappClassLoader\r\n");
-//        sb.append("  available:\r\n");
-//        Iterator available = this.available.iterator();
-//        while (available.hasNext()) {
-//            sb.append("    ");
-//            sb.append(available.next().toString());
-//            sb.append("\r\n");
-//        }
-//        sb.append("  delegate: ");
-//        sb.append(delegate);
-//        sb.append("\r\n");
-//        sb.append("  repositories:\r\n");
-//        for (int i = 0; i < repositories.length; i++) {
-//            sb.append("    ");
-//            sb.append(repositories[i]);
-//            sb.append("\r\n");
-//        }
-//        sb.append("  required:\r\n");
-//        Iterator required = this.required.iterator();
-//        while (required.hasNext()) {
-//            sb.append("    ");
-//            sb.append(required.next().toString());
-//            sb.append("\r\n");
-//        }
-//        if (this.parent != null) {
-//            sb.append("----------> Parent Classloader:\r\n");
-//            sb.append(this.parent.toString());
-//            sb.append("\r\n");
-//        }
-//        return (sb.toString());
-//
-//    }
+    public String toString() {
+
+        StringBuffer sb = new StringBuffer("WebappClassLoader\r\n");
+        sb.append("  available:\r\n");
+        Iterator available = this.available.iterator();
+        while (available.hasNext()) {
+            sb.append("    ");
+            sb.append(available.next().toString());
+            sb.append("\r\n");
+        }
+        sb.append("  delegate: ");
+        sb.append(delegate);
+        sb.append("\r\n");
+        sb.append("  repositories:\r\n");
+        for (int i = 0; i < repositories.length; i++) {
+            sb.append("    ");
+            sb.append(repositories[i]);
+            sb.append("\r\n");
+        }
+        sb.append("  required:\r\n");
+        Iterator required = this.required.iterator();
+        while (required.hasNext()) {
+            sb.append("    ");
+            sb.append(required.next().toString());
+            sb.append("\r\n");
+        }
+        if (this.parent != null) {
+            sb.append("----------> Parent Classloader:\r\n");
+            sb.append(this.parent.toString());
+            sb.append("\r\n");
+        }
+        return (sb.toString());
+
+    }
 
 
     // ---------------------------------------------------- ClassLoader Methods

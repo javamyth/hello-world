@@ -1049,40 +1049,40 @@ public class WebappLoader
             }
 
             // Looking up directory /WEB-INF/lib in the context
-//            try {
-//                NamingEnumeration enum = resources.listBindings(libPath);
-//                while (enum.hasMoreElements()) {
-//
-//                    Binding binding = (Binding) enum.nextElement();
-//                    String filename = libPath + "/" + binding.getName();
-//                    if (!filename.endsWith(".jar"))
-//                        continue;
-//
-//                    // Copy JAR in the work directory, always (the JAR file
-//                    // would get locked otherwise, which would make it
-//                    // impossible to update it or remove it at runtime)
-//                    File destFile = new File(destDir, binding.getName());
-//
-//                    log(sm.getString("webappLoader.jarDeploy", filename,
-//                                     destFile.getAbsolutePath()));
-//
-//                    Resource jarResource = (Resource) binding.getObject();
-//                    if (copyJars) {
-//                        if (!copy(jarResource.streamContent(),
-//                                  new FileOutputStream(destFile)))
-//                            continue;
-//                    }
-//
-//                    JarFile jarFile = new JarFile(destFile);
-//                    classLoader.addJar(filename, jarFile, destFile);
-//
-//                }
-//            } catch (NamingException e) {
+            try {
+                NamingEnumeration enum = resources.listBindings(libPath);
+                while (enum.hasMoreElements()) {
+
+                    Binding binding = (Binding) enum.nextElement();
+                    String filename = libPath + "/" + binding.getName();
+                    if (!filename.endsWith(".jar"))
+                        continue;
+
+                    // Copy JAR in the work directory, always (the JAR file
+                    // would get locked otherwise, which would make it
+                    // impossible to update it or remove it at runtime)
+                    File destFile = new File(destDir, binding.getName());
+
+                    log(sm.getString("webappLoader.jarDeploy", filename,
+                                     destFile.getAbsolutePath()));
+
+                    Resource jarResource = (Resource) binding.getObject();
+                    if (copyJars) {
+                        if (!copy(jarResource.streamContent(),
+                                  new FileOutputStream(destFile)))
+                            continue;
+                    }
+
+                    JarFile jarFile = new JarFile(destFile);
+                    classLoader.addJar(filename, jarFile, destFile);
+
+                }
+            } catch (NamingException e) {
                 // Silent catch: it's valid that no /WEB-INF/lib directory
                 // exists
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         }
 
@@ -1148,35 +1148,35 @@ public class WebappLoader
      */
     private boolean copyDir(DirContext srcDir, File destDir) {
 
-//        try {
-//
-//            NamingEnumeration enum = srcDir.list("");
-//            while (enum.hasMoreElements()) {
-//                NameClassPair ncPair =
-//                    (NameClassPair) enum.nextElement();
-//                String name = ncPair.getName();
-//                Object object = srcDir.lookup(name);
-//                File currentFile = new File(destDir, name);
-//                if (object instanceof Resource) {
-//                    InputStream is = ((Resource) object).streamContent();
-//                    OutputStream os = new FileOutputStream(currentFile);
-//                    if (!copy(is, os))
-//                        return false;
-//                } else if (object instanceof InputStream) {
-//                    OutputStream os = new FileOutputStream(currentFile);
-//                    if (!copy((InputStream) object, os))
-//                        return false;
-//                } else if (object instanceof DirContext) {
-//                    currentFile.mkdir();
-//                    copyDir((DirContext) object, currentFile);
-//                }
-//            }
-//
-//        } catch (NamingException e) {
-//            return false;
-//        } catch (IOException e) {
-//            return false;
-//        }
+        try {
+
+            NamingEnumeration enum = srcDir.list("");
+            while (enum.hasMoreElements()) {
+                NameClassPair ncPair =
+                    (NameClassPair) enum.nextElement();
+                String name = ncPair.getName();
+                Object object = srcDir.lookup(name);
+                File currentFile = new File(destDir, name);
+                if (object instanceof Resource) {
+                    InputStream is = ((Resource) object).streamContent();
+                    OutputStream os = new FileOutputStream(currentFile);
+                    if (!copy(is, os))
+                        return false;
+                } else if (object instanceof InputStream) {
+                    OutputStream os = new FileOutputStream(currentFile);
+                    if (!copy((InputStream) object, os))
+                        return false;
+                } else if (object instanceof DirContext) {
+                    currentFile.mkdir();
+                    copyDir((DirContext) object, currentFile);
+                }
+            }
+
+        } catch (NamingException e) {
+            return false;
+        } catch (IOException e) {
+            return false;
+        }
 
         return true;
 

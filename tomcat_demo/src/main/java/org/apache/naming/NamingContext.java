@@ -376,9 +376,9 @@ public class NamingContext implements Context {
         // Removing empty parts
         while ((!name.isEmpty()) && (name.get(0).length() == 0))
             name = name.getSuffix(1);
-//        if (name.isEmpty()) {
-//            return new NamingContextEnumeration(bindings.elements());
-//        }
+        if (name.isEmpty()) {
+            return new NamingContextEnumeration(bindings.elements());
+        }
         
         NamingEntry entry = (NamingEntry) bindings.get(name.get(0));
         
@@ -428,9 +428,9 @@ public class NamingContext implements Context {
         // Removing empty parts
         while ((!name.isEmpty()) && (name.get(0).length() == 0))
             name = name.getSuffix(1);
-//        if (name.isEmpty()) {
-//            return new NamingContextBindingsEnumeration(bindings.elements());
-//        }
+        if (name.isEmpty()) {
+            return new NamingContextBindingsEnumeration(bindings.elements());
+        }
         
         NamingEntry entry = (NamingEntry) bindings.get(name.get(0));
         

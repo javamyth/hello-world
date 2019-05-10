@@ -35,7 +35,7 @@ public final class Bootstrap2 {
     ((Pipeline) context).addValve(valve2);
 
     Mapper mapper = new SimpleContextMapper();
-    mapper.setProtocol("HTTP/1.1");
+    mapper.setProtocol("http");
     context.addMapper(mapper);
     Loader loader = new SimpleLoader();
     context.setLoader(loader);

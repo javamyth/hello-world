@@ -1059,13 +1059,13 @@ public class NamingContextListener
         if (resourceParameters == null)
             return;
         Hashtable params = resourceParameters.getParameters();
-//        Enumeration enum = params.keys();
-//        while (enum.hasMoreElements()) {
-//            String paramName = (String) enum.nextElement();
-//            String paramValue = (String) params.get(paramName);
-//            StringRefAddr refAddr = new StringRefAddr(paramName, paramValue);
-//            ref.add(refAddr);
-//        }
+        Enumeration enum = params.keys();
+        while (enum.hasMoreElements()) {
+            String paramName = (String) enum.nextElement();
+            String paramValue = (String) params.get(paramName);
+            StringRefAddr refAddr = new StringRefAddr(paramName, paramValue);
+            ref.add(refAddr);
+        }
     }
 
 

@@ -297,6 +297,7 @@ public class FileLogger
 
     }
 
+
     // -------------------------------------------------------- Private Methods
 
 

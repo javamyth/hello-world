@@ -385,16 +385,16 @@ public class DirContextURLConnection
         Vector result = new Vector();
         
         if (collection != null) {
-//            try {
-//                NamingEnumeration enum = context.list(getURL().getFile());
-//                while (enum.hasMoreElements()) {
-//                    NameClassPair ncp = (NameClassPair) enum.nextElement();
-//                    result.addElement(ncp.getName());
-//                }
-//            } catch (NamingException e) {
-//                // Unexpected exception
-//                throw new FileNotFoundException();
-//            }
+            try {
+                NamingEnumeration enum = context.list(getURL().getFile());
+                while (enum.hasMoreElements()) {
+                    NameClassPair ncp = (NameClassPair) enum.nextElement();
+                    result.addElement(ncp.getName());
+                }
+            } catch (NamingException e) {
+                // Unexpected exception
+                throw new FileNotFoundException();
+            }
         }
         
         return result.elements();

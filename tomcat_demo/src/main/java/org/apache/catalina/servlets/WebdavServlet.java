@@ -568,47 +568,47 @@ public class WebdavServlet
                     continue;
                 }
 
-//                if ((object instanceof DirContext) && (depth > 0)) {
-//
-//                    try {
-//                        NamingEnumeration enum = resources.list(currentPath);
-//                        while (enum.hasMoreElements()) {
-//                            NameClassPair ncPair =
-//                                (NameClassPair) enum.nextElement();
-//                            String newPath = currentPath;
-//                            if (!(newPath.endsWith("/")))
-//                                newPath += "/";
-//                            newPath += ncPair.getName();
-//                            stackBelow.push(newPath);
-//                        }
-//                    } catch (NamingException e) {
-//                        resp.sendError
-//                            (HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-//                             path);
-//                        return;
-//                    }
-//
-//                    // Displaying the lock-null resources present in that
-//                    // collection
-//                    String lockPath = currentPath;
-//                    if (lockPath.endsWith("/"))
-//                        lockPath = 
-//                            lockPath.substring(0, lockPath.length() - 1);
-//                    Vector currentLockNullResources =
-//                        (Vector) lockNullResources.get(lockPath);
-//                    if (currentLockNullResources != null) {
-//                        Enumeration lockNullResourcesList =
-//                            currentLockNullResources.elements();
-//                        while (lockNullResourcesList.hasMoreElements()) {
-//                            String lockNullPath = (String)
-//                                lockNullResourcesList.nextElement();
-//                            parseLockNullProperties
-//                                (req, generatedXML, lockNullPath, type,
-//                                 properties);
-//                        }
-//                    }
-//
-//                }
+                if ((object instanceof DirContext) && (depth > 0)) {
+
+                    try {
+                        NamingEnumeration enum = resources.list(currentPath);
+                        while (enum.hasMoreElements()) {
+                            NameClassPair ncPair =
+                                (NameClassPair) enum.nextElement();
+                            String newPath = currentPath;
+                            if (!(newPath.endsWith("/")))
+                                newPath += "/";
+                            newPath += ncPair.getName();
+                            stackBelow.push(newPath);
+                        }
+                    } catch (NamingException e) {
+                        resp.sendError
+                            (HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                             path);
+                        return;
+                    }
+
+                    // Displaying the lock-null resources present in that
+                    // collection
+                    String lockPath = currentPath;
+                    if (lockPath.endsWith("/"))
+                        lockPath = 
+                            lockPath.substring(0, lockPath.length() - 1);
+                    Vector currentLockNullResources =
+                        (Vector) lockNullResources.get(lockPath);
+                    if (currentLockNullResources != null) {
+                        Enumeration lockNullResourcesList =
+                            currentLockNullResources.elements();
+                        while (lockNullResourcesList.hasMoreElements()) {
+                            String lockNullPath = (String)
+                                lockNullResourcesList.nextElement();
+                            parseLockNullProperties
+                                (req, generatedXML, lockNullPath, type,
+                                 properties);
+                        }
+                    }
+
+                }
 
                 if (stack.isEmpty()) {
                     depth--;
@@ -1666,25 +1666,25 @@ public class WebdavServlet
                 return false;
             }
 
-//            try {
-//                NamingEnumeration enum = resources.list(source);
-//                while (enum.hasMoreElements()) {
-//                    NameClassPair ncPair = (NameClassPair) enum.nextElement();
-//                    String childDest = dest;
-//                    if (!childDest.equals("/"))
-//                        childDest += "/";
-//                    childDest += ncPair.getName();
-//                    String childSrc = source;
-//                    if (!childSrc.equals("/"))
-//                        childSrc += "/";
-//                    childSrc += ncPair.getName();
-//                    copyResource(resources, errorList, childSrc, childDest);
-//                }
-//            } catch (NamingException e) {
-//                errorList.put
-//                    (dest, new Integer(WebdavStatus.SC_INTERNAL_SERVER_ERROR));
-//                return false;
-//            }
+            try {
+                NamingEnumeration enum = resources.list(source);
+                while (enum.hasMoreElements()) {
+                    NameClassPair ncPair = (NameClassPair) enum.nextElement();
+                    String childDest = dest;
+                    if (!childDest.equals("/"))
+                        childDest += "/";
+                    childDest += ncPair.getName();
+                    String childSrc = source;
+                    if (!childSrc.equals("/"))
+                        childSrc += "/";
+                    childSrc += ncPair.getName();
+                    copyResource(resources, errorList, childSrc, childDest);
+                }
+            } catch (NamingException e) {
+                errorList.put
+                    (dest, new Integer(WebdavStatus.SC_INTERNAL_SERVER_ERROR));
+                return false;
+            }
 
         } else {
 
@@ -1844,53 +1844,53 @@ public class WebdavServlet
         if (lockTokenHeader == null)
             lockTokenHeader = "";
 
-//        Enumeration enum = null;
-//        try {
-//            enum = resources.list(path);
-//        } catch (NamingException e) {
-//            errorList.put(path, new Integer
-//                (WebdavStatus.SC_INTERNAL_SERVER_ERROR));
-//            return;
-//        }
-//
-//        while (enum.hasMoreElements()) {
-//            NameClassPair ncPair = (NameClassPair) enum.nextElement();
-//            String childName = path;
-//            if (!childName.equals("/"))
-//                childName += "/";
-//            childName += ncPair.getName();
-//
-//            if (isLocked(childName, ifHeader + lockTokenHeader)) {
-//
-//                errorList.put(childName, new Integer(WebdavStatus.SC_LOCKED));
-//
-//            } else {
-//
-//                try {
-//                    Object object = resources.lookup(childName);
-//                    if (object instanceof DirContext) {
-//                        deleteCollection(req, resources, childName, errorList);
-//                    }
-//
-//                    try {
-//                        resources.unbind(childName);
-//                    } catch (NamingException e) {
-//                        if (!(object instanceof DirContext)) {
-//                            // If it's not a collection, then it's an unknown
-//                            // error
-//                            errorList.put
-//                                (childName, new Integer
-//                                    (WebdavStatus.SC_INTERNAL_SERVER_ERROR));
-//                        }
-//                    }
-//                } catch (NamingException e) {
-//                    errorList.put
-//                        (childName, new Integer
-//                            (WebdavStatus.SC_INTERNAL_SERVER_ERROR));
-//                }
-//            }
-//
-//        }
+        Enumeration enum = null;
+        try {
+            enum = resources.list(path);
+        } catch (NamingException e) {
+            errorList.put(path, new Integer
+                (WebdavStatus.SC_INTERNAL_SERVER_ERROR));
+            return;
+        }
+
+        while (enum.hasMoreElements()) {
+            NameClassPair ncPair = (NameClassPair) enum.nextElement();
+            String childName = path;
+            if (!childName.equals("/"))
+                childName += "/";
+            childName += ncPair.getName();
+
+            if (isLocked(childName, ifHeader + lockTokenHeader)) {
+
+                errorList.put(childName, new Integer(WebdavStatus.SC_LOCKED));
+
+            } else {
+
+                try {
+                    Object object = resources.lookup(childName);
+                    if (object instanceof DirContext) {
+                        deleteCollection(req, resources, childName, errorList);
+                    }
+
+                    try {
+                        resources.unbind(childName);
+                    } catch (NamingException e) {
+                        if (!(object instanceof DirContext)) {
+                            // If it's not a collection, then it's an unknown
+                            // error
+                            errorList.put
+                                (childName, new Integer
+                                    (WebdavStatus.SC_INTERNAL_SERVER_ERROR));
+                        }
+                    }
+                } catch (NamingException e) {
+                    errorList.put
+                        (childName, new Integer
+                            (WebdavStatus.SC_INTERNAL_SERVER_ERROR));
+                }
+            }
+
+        }
 
     }
 

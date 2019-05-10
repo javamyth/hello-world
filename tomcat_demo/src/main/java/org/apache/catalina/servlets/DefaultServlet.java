@@ -1446,62 +1446,62 @@ public class DefaultServlet
         sb.append("</strong></font></td>\r\n");
         sb.append("</tr>");
 
-    //    try {
+        try {
 
             // Render the directory entries within this directory
-  //          DirContext directory = resourceInfo.directory;
-//            NamingEnumeration enum =
-//                resourceInfo.resources.list(resourceInfo.path);
+            DirContext directory = resourceInfo.directory;
+            NamingEnumeration enum =
+                resourceInfo.resources.list(resourceInfo.path);
             boolean shade = false;
-//            while (enum.hasMoreElements()) {
-//
-//                NameClassPair ncPair = (NameClassPair) enum.nextElement();
-//                String resourceName = ncPair.getName();
-//                ResourceInfo childResourceInfo =
-//                    new ResourceInfo(resourceName, directory);
-//
-//                String trimmed = resourceName/*.substring(trim)*/;
-//                if (trimmed.equalsIgnoreCase("WEB-INF") ||
-//                    trimmed.equalsIgnoreCase("META-INF"))
-//                    continue;
-//
-//                sb.append("<tr");
-//                if (shade)
-//                    sb.append(" bgcolor=\"eeeeee\"");
-//                sb.append(">\r\n");
-//                shade = !shade;
-//
-//                sb.append("<td align=\"left\">&nbsp;&nbsp;\r\n");
-//                sb.append("<a href=\"");
-//                sb.append(rewriteUrl(contextPath));
-//                resourceName = rewriteUrl(name + resourceName);
-//                sb.append(resourceName);
-//                if (childResourceInfo.collection)
-//                    sb.append("/");
-//                sb.append("\"><tt>");
-//                sb.append(trimmed);
-//                if (childResourceInfo.collection)
-//                    sb.append("/");
-//                sb.append("</tt></a></td>\r\n");
-//
-//                sb.append("<td align=\"right\"><tt>");
-//                if (childResourceInfo.collection)
-//                    sb.append("&nbsp;");
-//                else
-//                    sb.append(renderSize(childResourceInfo.length));
-//                sb.append("</tt></td>\r\n");
-//
-//                sb.append("<td align=\"right\"><tt>");
-//                sb.append(childResourceInfo.httpDate);
-//                sb.append("</tt></td>\r\n");
-//
-//                sb.append("</tr>\r\n");
-//            }
+            while (enum.hasMoreElements()) {
 
-//        } catch (NamingException e) {
-//            // Something went wrong
-//            e.printStackTrace();
-//        }
+                NameClassPair ncPair = (NameClassPair) enum.nextElement();
+                String resourceName = ncPair.getName();
+                ResourceInfo childResourceInfo =
+                    new ResourceInfo(resourceName, directory);
+
+                String trimmed = resourceName/*.substring(trim)*/;
+                if (trimmed.equalsIgnoreCase("WEB-INF") ||
+                    trimmed.equalsIgnoreCase("META-INF"))
+                    continue;
+
+                sb.append("<tr");
+                if (shade)
+                    sb.append(" bgcolor=\"eeeeee\"");
+                sb.append(">\r\n");
+                shade = !shade;
+
+                sb.append("<td align=\"left\">&nbsp;&nbsp;\r\n");
+                sb.append("<a href=\"");
+                sb.append(rewriteUrl(contextPath));
+                resourceName = rewriteUrl(name + resourceName);
+                sb.append(resourceName);
+                if (childResourceInfo.collection)
+                    sb.append("/");
+                sb.append("\"><tt>");
+                sb.append(trimmed);
+                if (childResourceInfo.collection)
+                    sb.append("/");
+                sb.append("</tt></a></td>\r\n");
+
+                sb.append("<td align=\"right\"><tt>");
+                if (childResourceInfo.collection)
+                    sb.append("&nbsp;");
+                else
+                    sb.append(renderSize(childResourceInfo.length));
+                sb.append("</tt></td>\r\n");
+
+                sb.append("<td align=\"right\"><tt>");
+                sb.append(childResourceInfo.httpDate);
+                sb.append("</tt></td>\r\n");
+
+                sb.append("</tr>\r\n");
+            }
+
+        } catch (NamingException e) {
+            // Something went wrong
+            e.printStackTrace();
+        }
 
         // Render the page footer
         sb.append("</table>\r\n");
@@ -1514,8 +1514,8 @@ public class DefaultServlet
         // Return an input stream to the underlying bytes
         writer.write(sb.toString());
         writer.flush();
-      //  return (new ByteArrayInputStream(stream.toByteArray()));
-       return null;
+        return (new ByteArrayInputStream(stream.toByteArray()));
+
     }
 
 
