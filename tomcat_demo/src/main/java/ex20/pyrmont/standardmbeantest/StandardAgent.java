@@ -41,8 +41,11 @@ public class StandardAgent {
     MBeanServer mBeanServer = agent.getMBeanServer();
     String domain = mBeanServer.getDefaultDomain();
     String managedResourceClassName = "ex20.pyrmont.standardmbeantest.Car";
+    System.out.println(domain + ":type=" + 
+    	      managedResourceClassName);
     ObjectName objectName = agent.createObjectName(domain + ":type=" + 
       managedResourceClassName);
+ 
     agent.createStandardBean(objectName, managedResourceClassName);
 
 
@@ -51,6 +54,7 @@ public class StandardAgent {
       Attribute colorAttribute = new Attribute("Color","blue");
       mBeanServer.setAttribute(objectName, colorAttribute);
       System.out.println(mBeanServer.getAttribute(objectName, "Color"));
+      
       mBeanServer.invoke(objectName,"drive",null,null);
     } 
     catch (Exception e) {

@@ -8,7 +8,7 @@
   <mbean name="myMBean"
     className="javax.management.modelmbean.RequiredModelMBean"
     description="The ModelMBean that manages our Car object"
-    type="ex20.pyrmont.modelmbeantest.Car">
+    type="ex20.pyrmont.modelmbeantest2.Car">
 
     <attribute name="Color"
       description="The car color"
@@ -21,6 +21,23 @@
       <parameter name="driver" description="the driver parameter"
         type="java.lang.String"/>
     </operation>
+    
+    <operation name="setColor"
+      description="setColor method"
+      impact="ACTION"
+      returnType="void">
+      <parameter name="color" description="the driver parameter"
+        type="java.lang.String"/>
+    </operation>
+    
+    
+    <operation name="getColor"
+      description="getColor method"
+      impact="ACTION"
+      returnType="void">
+    </operation>
+    
+    
 
   </mbean>
 
