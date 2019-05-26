@@ -12,7 +12,7 @@
 
     <attribute name="Color"
       description="The car color"
-      type="java.lang.String"/>
+      type="java.lang.String" />
 
     <operation name="drive"
       description="drive method"
